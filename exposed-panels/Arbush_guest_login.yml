@@ -1,0 +1,28 @@
+id: Guest Login Enabled
+
+info:
+  name: archibus
+  author: PJBorah
+  severity: High
+  reference:
+    - https://cwe.mitre.org/data/definitions/284.html
+  tags: exposure
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/archibus/login.axvw"
+
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "Continue As a Guest"
+        part: body
+        condition: and
+
+      - type: status
+        status:
+          - 200
+
